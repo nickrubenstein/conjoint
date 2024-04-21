@@ -12,7 +12,6 @@ const conjoint = (featureArray, K, N, noDuplicateProfiles) => {
     for (let i = 1; i <= N; i++) {
       let complete = false;
       while (!complete) {
-        const profileDict = {};
         let attr = 0;
 
         for (const [attribute, levels] of Object.entries(featureArray)) {
@@ -20,11 +19,8 @@ const conjoint = (featureArray, K, N, noDuplicateProfiles) => {
           const attrKey = `F-${p}-${attr}`;
           returnArray[attrKey] = attribute;
 
-          const numLevels = levels.length;
-          const levelIndex = mtRand(1, numLevels) - 1;
-
+          const levelIndex = mtRand(1, levels.length) - 1;
           const chosenLevel = levels[levelIndex];
-          profileDict[attribute] = chosenLevel;
 
           const levelKey = `F-${p}-${i}-${attr}`;
           returnArray[levelKey] = chosenLevel;
